@@ -53,11 +53,17 @@
             border-radius: 0 10px 0 0;
             background-color: gold;
         }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
-    <div>
+    <div class="container">
        <div class="container-table">
            <div class="today"></div><div class="tomorrow"></div>
        </div>
+       <div class="dday-test"></div>
     </div> 
     <script>
         const timetable = [
@@ -117,6 +123,25 @@
             todayTable.childNodes[7].style.borderRadius = "0 0 10px 10px"
         }
 
+        const remainTime = document.querySelector(".dday-test");
+
+        function diffDay() {
+            const masTime = new Date("2022-7-1");
+            const todayTime = new Date();
+
+            const diff = masTime - todayTime;
+
+            const diffDay = Math.floor(diff / (1000*60*60*24));
+            const diffHour = Math.floor((diff / (1000*60*60)) % 24);
+            const diffMin = Math.floor((diff / (1000*60)) % 60);
+            const diffSec = Math.floor(diff / 1000 % 60);
+
+            remainTime.innerText = `시험까지 남은 시간 - ${diffDay}일 ${diffHour}시간 ${diffMin}분 ${diffSec}초`;
+        }
+
+        diffDay();
+        setInterval(diffDay, 1000);
+        
     </script>
 </body>
 </html> 
