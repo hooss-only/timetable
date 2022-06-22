@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>timetable</title>
+</head>
+<body>
+    <style>
+        .container-table {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+        }
+        .today {
+            display: flex;
+            flex-direction: column;
+        }
+        .today > div {
+            border: 1px black solid;
+            border-bottom: 0;
+            padding: 20px 5px;
+            width: 80px;
+            text-align: center;
+        }
+        .today > div:last-child {
+            border-bottom: 1px black solid;
+            border-radius: 0 0 0 10px;
+        }
+        .today > div:first-child {
+            border-radius: 10px 0 0 0;
+            background-color: gold;
+        }
+        .tomorrow {
+            display: flex;
+            flex-direction: column;
+        }
+        .tomorrow > div {
+            border: 1px black solid;
+            border-bottom: 0;
+            border-left: 0;
+            padding: 20px 5px;
+            width: 80px;
+            text-align: center;
+        }
+        .tomorrow > div:last-child {
+            border-bottom: 1px black solid;
+            border-radius: 0 0 10px 0;
+        }
+        .tomorrow > div:first-child {
+            border-radius: 0 10px 0 0;
+            background-color: gold;
+        }
+    </style>
+    <div>
+       <div class="container-table">
+           <div class="today"></div><div class="tomorrow"></div>
+       </div>
+    </div> 
+    <script>
+        const timetable = [
+            ["월","학스","사회","영3","수학","기술","과3","국어"],
+            ["화","국어","영1","과3","역사","수학","창B","음악"],
+            ["수","과1","환경","수학","가정","사회","국어"],
+            ["목","영3","창A","미술","역사","체육","음악","도덕"],
+            ["금","학스","영3","수학","국어","과3","체육","환경"],
+            ["토","x"],
+            ["일","x"],
+        ];
+        let today = timetable[new Date().getDay()-1];
+        let tomorrow = timetable[new Date().getDay() != 7 ? new Date().getDay() : 1];
+        const todayTable = document.querySelector(".container-table > .today ");
+        const tomorrowTable = document.querySelector(".container-table > .tomorrow ");
+        for (i=0;i<today.length;i++) {
+            let t = document.createElement("div");
+            t.innerHTML = today[i];
+            todayTable.appendChild(t);
+        }
+        for (i=0;i<today.length;i++) {
+            let t = document.createElement("div");
+            t.innerHTML = tomorrow[i];
+            tomorrowTable.appendChild(t);
+        }
+    </script>
+</body>
+</html> 
