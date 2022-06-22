@@ -99,7 +99,7 @@
         const todayTable = document.querySelector(".container-table > .today ");
         const tomorrowTable = document.querySelector(".container-table > .tomorrow ");
         const date = new Date
-        const time = date.getHours() * 60 + date.getMinutes();
+        
 
         for (i=0;i<today.length;i++) {
             let t = document.createElement("div");
@@ -112,23 +112,27 @@
             tomorrowTable.appendChild(t);
         }
 
-        if (day != 6 || day != 7) {
-            if (time >= 540 && time <= 585) {
-                todayTable.childNodes[1].style["background-color"] = "rgb(255, 248, 210)";
-            } else if (time >= 595 && time <= 640) {
-                todayTable.childNodes[2].style["background-color"] = "rgb(255, 248, 210)";
-            } else if (time >= 650 && time <= 695) {
-                todayTable.childNodes[3].style["background-color"] = "rgb(255, 248, 210)";
-            } else if (time >= 705 && time <= 750) {
-                todayTable.childNodes[4].style["background-color"] = "rgb(255, 248, 210)";
-            } else if (time >= 790 && time <= 835) {
-                todayTable.childNodes[5].style["background-color"] = "rgb(255, 248, 210)";
-            } else if (time >= 845 && time <= 890) {
-                todayTable.childNodes[6].style["background-color"] = "rgb(255, 248, 210)";
-            } else if (time >= 900 && time <= 945 && day != 3) {
-                todayTable.childNodes[7].style["background-color"] = "rgb(255, 248, 210)";
+        function diffTime(){
+            const time = date.getHours() * 60 + date.getMinutes();
+            if (day != 6 || day != 7) {
+                if (time >= 540 && time <= 585) {
+                    todayTable.childNodes[1].style["background-color"] = "rgb(255, 248, 210)";
+                } else if (time >= 595 && time <= 640) {
+                    todayTable.childNodes[2].style["background-color"] = "rgb(255, 248, 210)";
+                } else if (time >= 650 && time <= 695) {
+                    todayTable.childNodes[3].style["background-color"] = "rgb(255, 248, 210)";
+                } else if (time >= 705 && time <= 750) {
+                    todayTable.childNodes[4].style["background-color"] = "rgb(255, 248, 210)";
+                } else if (time >= 790 && time <= 835) {
+                    todayTable.childNodes[5].style["background-color"] = "rgb(255, 248, 210)";
+                } else if (time >= 845 && time <= 890) {
+                    todayTable.childNodes[6].style["background-color"] = "rgb(255, 248, 210)";
+                } else if (time >= 900 && time <= 945 && day != 3) {
+                    todayTable.childNodes[7].style["background-color"] = "rgb(255, 248, 210)";
+                }
             }
         }
+        diffTime();
 
         if (day == 3) {
             todayTable.childNodes.forEach((n) => n.style.borderRight = 0);
@@ -158,6 +162,7 @@
 
         diffDay();
         setInterval(diffDay, 1000);
+        setInterval(diffTime, 60000);
         
     </script>
     <footer><div>레포지토리 | <a href="https://github.com/hooss-only/timetable" target="_blank" style="text-decoration: none;color:purple">hooss-only/timetable</a></div></footer>
