@@ -69,20 +69,54 @@
             ["토","x"],
             ["일","x"],
         ];
-        let today = timetable[new Date().getDay()-1];
-        let tomorrow = timetable[new Date().getDay() != 7 ? new Date().getDay() : 1];
+
+        const day = new Date().getDay();
+        let today = timetable[day-1];
+        let tomorrow = timetable[day != 7 ? day : 1];
         const todayTable = document.querySelector(".container-table > .today ");
         const tomorrowTable = document.querySelector(".container-table > .tomorrow ");
+        const date = new Date
+        const time = date.getHours() * 60 + date.getMinutes();
+
         for (i=0;i<today.length;i++) {
             let t = document.createElement("div");
             t.innerHTML = today[i];
             todayTable.appendChild(t);
         }
-        for (i=0;i<today.length;i++) {
+        for (i=0;i<tomorrow.length;i++) {
             let t = document.createElement("div");
             t.innerHTML = tomorrow[i];
             tomorrowTable.appendChild(t);
         }
+
+        if (day != 6 || day != 7) {
+            if (time >= 540 && time <= 585) {
+                todayTable.childNodes[1].style["background-color"] = "rgb(255, 248, 210)";
+            } else if (time >= 595 && time <= 640) {
+                todayTable.childNodes[2].style["background-color"] = "rgb(255, 248, 210)";
+            } else if (time >= 650 && time <= 695) {
+                todayTable.childNodes[3].style["background-color"] = "rgb(255, 248, 210)";
+            } else if (time >= 705 && time <= 750) {
+                todayTable.childNodes[4].style["background-color"] = "rgb(255, 248, 210)";
+            } else if (time >= 790 && time <= 835) {
+                todayTable.childNodes[5].style["background-color"] = "rgb(255, 248, 210)";
+            } else if (time >= 845 && time <= 890) {
+                todayTable.childNodes[6].style["background-color"] = "rgb(255, 248, 210)";
+            } else if (time >= 900 && time <= 945 && day != 3) {
+                todayTable.childNodes[7].style["background-color"] = "rgb(255, 248, 210)";
+            }
+        }
+
+        if (day == 3) {
+            todayTable.childNodes.forEach((n) => n.style.borderRight = 0);
+            tomorrowTable.childNodes.forEach((n) => n.style.borderLeft = "1px black solid");
+            tomorrowTable.childNodes[7].style.borderRadius = "0 0 10px 10px";
+        }
+
+        if (day == 2 || day == 5) {
+            todayTable.childNodes[7].style.borderRadius = "0 0 10px 10px"
+        }
+
     </script>
 </body>
 </html> 
