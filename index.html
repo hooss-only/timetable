@@ -93,12 +93,12 @@
             ["일","x"],
         ];
 
-        let day = new Date().getDay();
+        const day = new Date().getDay();
         let today = timetable[day-1];
         let tomorrow = timetable[day != 7 ? day : 1];
         const todayTable = document.querySelector(".container-table > .today ");
         const tomorrowTable = document.querySelector(".container-table > .tomorrow ");
-        const date = new Date
+        let date = new Date;
         
 
         for (i=0;i<today.length;i++) {
@@ -113,7 +113,7 @@
         }
 
         function diffTime(){
-            day = new Date().getDay();
+            date = new Date();
             const time = date.getHours() * 60 + date.getMinutes();
             if (day != 6 || day != 7) {
                 if (time >= 540 && time <= 585) {
